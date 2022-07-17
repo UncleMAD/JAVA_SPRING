@@ -4,28 +4,28 @@ import java.util.Date;
 
 public class Ticket {
 
-    private Integer id;
-    private Integer seat_number;
+    private int id;
+    private int seat_number;
     private String name;
     private String departure_station_name;
     private String arrival_station_name;
     private String date;
-    private Integer ticket_cost;
-    private Integer numbered_seat_cost;
+    private int ticket_cost;
+    private int numbered_seat_cost;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Integer getSeat_number() {
+    public int getSeat_number() {
         return seat_number;
     }
 
-    public void setSeat_number(Integer seat_number) {
+    public void setSeat_number(int seat_number) {
         this.seat_number = seat_number;
     }
 
@@ -61,19 +61,19 @@ public class Ticket {
         this.date = date;
     }
 
-    public Integer getTicket_cost() {
+    public int getTicket_cost() {
         return ticket_cost;
     }
 
-    public void setTicket_cost(Integer ticket_cost) {
+    public void setTicket_cost(int ticket_cost) {
         this.ticket_cost = ticket_cost;
     }
 
-    public Integer getNumbered_seat_cost() {
+    public int getNumbered_seat_cost() {
         return numbered_seat_cost;
     }
 
-    public void setNumbered_seat_cost(Integer numbered_seat_cost) {
+    public void setNumbered_seat_cost(int numbered_seat_cost) {
         this.numbered_seat_cost = numbered_seat_cost;
     }
 
