@@ -4,6 +4,7 @@ import com.senyakin.practice.repository.TicketRepository;
 import com.senyakin.practice.service.TicketService;
 import com.senyakin.practice.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +32,10 @@ public class TicketController {
     public ResponseEntity<?> create(@RequestBody Ticket ticket) {
         Ticket ts = ticketService.read(ticket.getId());
         if (ts != null) {
-           return new ResponseEntity<>("ENTITY IS ALREADY EXISTS", HttpStatus.BAD_REQUEST);
+           return new ResponseEntity<>("ENTITY IS ALREADY EXISTS", HttpStatus.CONFLICT);
         }
         ticketService.create(ticket);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>("ENTITY SUCCESSFULLY CREATED", HttpStatus.CREATED);
 
         }
 
@@ -48,12 +49,11 @@ public class TicketController {
     }
 
     @GetMapping(value = "/read/{id}") /*вытягивает билет по его айди*/
-    public ResponseEntity<Ticket> read(@PathVariable(name = "id") int id) {
+    public ResponseEntity<?> read(@PathVariable(name = "id") int id) {
         final Ticket ticket = ticketService.read(id);
-
         return ticket != null
                 ? new ResponseEntity<>(ticket, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                : new ResponseEntity<>("TICKET NOT FOUND", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping(value = "/information")
@@ -73,7 +73,7 @@ public class TicketController {
         }
         final boolean deleted = ticketService.delete(id);
         System.out.println("\n TEST:\n" + deleted );
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("ENTITY SUCCESSFULLY DELETED", HttpStatus.ACCEPTED);
     }
 
 
