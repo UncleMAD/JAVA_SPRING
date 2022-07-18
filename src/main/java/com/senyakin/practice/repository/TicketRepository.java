@@ -76,7 +76,7 @@ public class TicketRepository {
         for (Ticket ticket: all) {
             if (ticket.getId() == id) return ticket;
         }
-        throw new IllegalStateException("НЕВОЗМОЖНО");
+        return null;
     }
 }
 

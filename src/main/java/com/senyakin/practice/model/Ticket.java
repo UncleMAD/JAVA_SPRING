@@ -13,6 +13,17 @@ public class Ticket {
     private int ticket_cost;
     private int numbered_seat_cost;
 
+    public Ticket(int id, int seat_number, String name, String departure_station_name, String arrival_station_name, String date, int ticket_cost, int numbered_seat_cost) {
+        this.id = id;
+        this.seat_number = seat_number;
+        this.name = name;
+        this.departure_station_name = departure_station_name;
+        this.arrival_station_name = arrival_station_name;
+        this.date = date;
+        this.ticket_cost = ticket_cost;
+        this.numbered_seat_cost = numbered_seat_cost;
+    }
+
     public int getId() {
         return id;
     }
@@ -49,7 +60,7 @@ public class Ticket {
         return arrival_station_name;
     }
 
-    public void setId(String arrival_station_name) {
+    public void setArrival_station_name(String arrival_station_name) {
         this.arrival_station_name = arrival_station_name;
     }
 
@@ -76,5 +87,4 @@ public class Ticket {
     public void setNumbered_seat_cost(int numbered_seat_cost) {
         this.numbered_seat_cost = numbered_seat_cost;
     }
-
 }

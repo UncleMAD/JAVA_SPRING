@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("ticket")
+@RequestMapping("/ticket")
 public class TicketController {
     private final TicketService ticketService;
 
@@ -31,10 +31,10 @@ public class TicketController {
     public ResponseEntity<?> create(@RequestBody Ticket ticket) {
         Ticket ts = ticketService.read(ticket.getId());
         if (ts != null) {
-           return new ResponseEntity<>("ENTITY IS ALREADY EXISTS", HttpStatus.valueOf(205));
+           return new ResponseEntity<>("ENTITY IS ALREADY EXISTS", HttpStatus.BAD_REQUEST);
         }
-                ticketService.create(ticket);
-                return new ResponseEntity<>(HttpStatus.CREATED);
+        ticketService.create(ticket);
+        return new ResponseEntity<>(HttpStatus.CREATED);
 
         }
 
