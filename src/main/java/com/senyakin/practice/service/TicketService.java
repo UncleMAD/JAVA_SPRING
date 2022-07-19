@@ -12,8 +12,6 @@ public interface TicketService {
 
     Ticket read(int id);
 
-    boolean update(Ticket ticket, int id);
-
     boolean delete(int id);
 
 }

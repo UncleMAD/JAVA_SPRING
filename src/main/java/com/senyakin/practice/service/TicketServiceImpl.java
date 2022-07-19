@@ -30,10 +30,7 @@ public class TicketServiceImpl implements TicketService {
         return ticketRepository.getById(id);
     }
 
-    @Override
-    public boolean update(Ticket ticket, int id) {
-        return false;
-    }
+
     @Override
     public boolean delete(int id) {
         ticketRepository.deleteTicketById(id);

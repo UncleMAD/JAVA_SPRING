@@ -18,28 +18,26 @@ import java.util.stream.Collectors;
 public class TicketRepository {
     private final String PATH_TO_FILE = "src/main/resources/data.json";
 
-    /*metodi*/
-    public List<Ticket> readFile(){//считываем
+
+    public List<Ticket> readFile(){
         try {
             Gson gson = new Gson();
-            // create a reader
-            Reader reader = Files.newBufferedReader(Paths.get(PATH_TO_FILE));//создаем переменную обращаемся к файлу который будем считывать
-            // convert JSON array to list of users
-            List<Ticket> tickets = new Gson().fromJson(reader, new TypeToken<List<Ticket>>() {}.getType());//это массив. сюда в эту переменную мы будем сохраянть все данные из джсон
+            Reader reader = Files.newBufferedReader(Paths.get(PATH_TO_FILE));
+            List<Ticket> tickets = new Gson().fromJson(reader, new TypeToken<List<Ticket>>() {}.getType());
             reader.close();
             return tickets;
 
-        } catch (Exception ex) {//исключение
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         throw new RuntimeException();
     }
-    public void addtoFile (List<Ticket> ticket) { //Добавление в файл
+    public void addtoFile (List<Ticket> ticket) {
         String jsonstring;
         try {
             Gson gson = new Gson();
-            jsonstring = gson.toJson(ticket);//переменная преобразованная в json
-            try (PrintWriter out = new PrintWriter(new FileWriter(PATH_TO_FILE)))//показываем куда записывать по какому адресу
+            jsonstring = gson.toJson(ticket);
+            try (PrintWriter out = new PrintWriter(new FileWriter(PATH_TO_FILE)))
             {
                 out.write(jsonstring);
             } catch (Exception e) {
@@ -50,12 +48,12 @@ public class TicketRepository {
             e.printStackTrace();
         }
     }
-    public void save(Ticket ticket) { //сохранение
+    public void save(Ticket ticket) {
         List<Ticket> tickets = readFile();
-        tickets.add(ticket);//эдд есть у класса лист
+        tickets.add(ticket);
         addtoFile(tickets);
     }
-    public boolean selectExistTicketById(int id){ //проверить наличие город по айдишнику
+    public boolean selectExistTicketById(int id){
         final List<Ticket> all = readFile();
         for (Ticket ticket: all) {
             if (ticket.getId() == id) return true;
@@ -71,7 +69,7 @@ public class TicketRepository {
     }
 
 
-    public Ticket getById(int id){ //получаем по айдишнику
+    public Ticket getById(int id){
         final List<Ticket> all = readFile();
         for (Ticket ticket: all) {
             if (ticket.getId() == id) return ticket;
